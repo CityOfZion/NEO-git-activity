@@ -1,4 +1,4 @@
-# React-Redux Project for managing GITHUB APIS
+# NEO github activity
 
 
 ## Usage:
