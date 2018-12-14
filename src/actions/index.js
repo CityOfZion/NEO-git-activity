@@ -74,7 +74,7 @@ export function getUsersInfo(users){
             axios
             .get("https://api.github.com/users/"+user)
             .then(res => {
-                count = count + 1    
+                count = count + 1
                 if (res.status === 200) {
                     usersinfo = usersinfo.concat(res.data)
                     if (count === users_num){
@@ -91,7 +91,7 @@ export function getUsersInfo(users){
                 console.log("getUsersError")
             });
         });
-    };    
+    };
 }
 
 export function getCommits(repos){
@@ -103,13 +103,13 @@ export function getCommits(repos){
         dispatch(getCommitsRequest());
         repos.forEach((repo, index, arr) => {
 
-            /**************** 
-            *   only master branches  
+            /****************
+            *   only master branches
             *****************/
             axios
-            .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&sort=updated_at&page=0&per_page=1000")
+            .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?sort=updated_at&page=0&per_page=1000")
             .then(res => {
-                count = count + 1  
+                count = count + 1
                 if (res.status === 200) {
                     res.data.forEach((item, index) => {
                         item.repo = repo;
@@ -124,15 +124,15 @@ export function getCommits(repos){
                 }
             })
             .catch(err => {
-                count = count + 1                 
+                count = count + 1
                 if (count === repos_num){
                     dispatch(getCommitsSuccess(commits));
                 }
                 console.log("getCommitsError")
             });
 
-            /**************** 
-            *   all branches   
+            /****************
+            *   all branches
             *****************/
             // axios
             // .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/branches?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&")
@@ -145,7 +145,7 @@ export function getCommits(repos){
             //         .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&sha="+branche.name+"&sort=updated_at&per_page=1000")
             //         .then(res => {
             //             count = count + 1
-                          
+
             //             if (res.status === 200) {
             //                 res.data.forEach((item, index) => {
             //                     item.repo = repo;
@@ -162,7 +162,7 @@ export function getCommits(repos){
             //             }
             //         })
             //         .catch(err => {
-            //             count = count + 1                 
+            //             count = count + 1
             //             if (count === repos_num){
             //                 dispatch(getCommitsSuccess(commits));
             //             }
@@ -183,7 +183,7 @@ export function getProjects(users) {
         dispatch(getProjectsRequest());
         users.forEach((user, index, arr) => {
             axios
-            .get("https://api.github.com/users/"+user+"/repos?access_token=9fe77e74cb27381e92cdd445c45deb747218f3a6&sort=updated_at&per_page=100")
+            .get("https://api.github.com/users/"+user+"/repos?sort=updated_at&per_page=100")
             .then(res => {
                 count = count + 1
                 if (res.status === 200) {
