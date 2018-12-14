@@ -5,6 +5,8 @@
   "dependencies": {
     "@githubprimer/octicons-react": "^8.2.0",
     "axios": "^0.18.0",
+    "gh-pages": "^2.0.1",
+    "homepage": "http://cityofzion.io/NEO-git-activity/",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-loading-skeleton": "^1.0.0",
@@ -20,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build"
   }
 }
