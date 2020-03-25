@@ -72,7 +72,11 @@ export function getUsersInfo(users){
         console.log("user reqest")
         users.forEach((user, index, arr) => {
             axios
-            .get("https://api.github.com/users/"+user)
+            .get("https://api.github.com/users/"+user, {
+              auth: {
+                username: process.env.REACT_APP_USER_GITHUB,
+                password: process.env.REACT_APP_TOKEN_GITHUB }
+              })
             .then(res => {
                 count = count + 1
                 if (res.status === 200) {
@@ -107,7 +111,11 @@ export function getCommits(repos){
             *   only master branches
             *****************/
             axios
-            .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?sort=updated_at&page=0&per_page=1000")
+            .get("https://api.github.com/repos/"+repo.owner.login+"/"+repo.name+"/commits?sort=updated_at&page=0&per_page=1000", {
+              auth: {
+                username: process.env.REACT_APP_USER_GITHUB,
+                password: process.env.REACT_APP_TOKEN_GITHUB }
+              })
             .then(res => {
                 count = count + 1
                 if (res.status === 200) {
@@ -183,7 +191,11 @@ export function getProjects(users) {
         dispatch(getProjectsRequest());
         users.forEach((user, index, arr) => {
             axios
-            .get("https://api.github.com/users/"+user+"/repos?sort=updated_at&per_page=100")
+            .get("https://api.github.com/users/"+user+"/repos?sort=updated_at&per_page=100", {
+              auth: {
+                username: process.env.REACT_APP_USER_GITHUB,
+                password: process.env.REACT_APP_TOKEN_GITHUB }
+              })
             .then(res => {
                 count = count + 1
                 if (res.status === 200) {
